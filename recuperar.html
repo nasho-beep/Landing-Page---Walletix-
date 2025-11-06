@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walletix · Recuperar contraseña</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --primary:#0ea5e9; --green:#22c55e; --page:#0d2338; --ink:#e6eef7;
+      --card:#ffffff; --border:rgba(15,23,42,.18); --shadow:0 12px 34px rgba(2,8,23,.35);
+      --radius:18px; --maxw:1180px;
+    }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; background:var(--page); color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+    :focus-visible{ outline:3px solid var(--primary); outline-offset:2px; border-radius:10px; }
+
+    /* NAV (mismo estilo que el resto) */
+    header{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); }
+    .nav{ background:color-mix(in srgb, var(--page) 92%, transparent); border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav__bar{ max-width:var(--maxw); margin:auto; padding:clamp(14px,2vw,20px); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ font-weight:900; letter-spacing:.04em; color:#fff; }
+    nav ul{ list-style:none; display:flex; gap:clamp(8px,1.5vw,14px); margin:0; padding:0; align-items:center; }
+    .pill{ padding:.55rem .9rem; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); border-radius:999px; font-weight:600; color:#dbe6f4; position:relative; }
+
+    /* LAYOUT tarjeta */
+    .auth{ max-width:var(--maxw); margin:auto; padding:clamp(18px,3vw,28px); }
+    .auth-card{
+      display:grid; grid-template-columns:1fr 1.2fr; gap:0;
+      background:var(--card); color:#0f172a; border:1px solid var(--border);
+      border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+    }
+    @media (max-width:980px){ .auth-card{ grid-template-columns:1fr; } }
+
+    /* Aside oscuro con logo y lema */
+    .auth-aside{ background:var(--page); padding:clamp(24px,4vw,40px); display:grid; place-items:center; }
+    .aside-stack{ display:grid; gap:clamp(18px,2vw,28px); place-items:center; text-align:center; }
+    .logo-circle{
+      width:clamp(160px,26vw,240px); aspect-ratio:1/1; border-radius:50%;
+      background:#fff; display:grid; place-items:center; box-shadow:0 24px 60px rgba(2,8,23,.35);
+    }
+    .logo-circle img{ width:68%; height:auto; object-fit:contain; }
+    .aside-slogan{ font-size:clamp(18px,2.2vw,24px); color:#e6eef7; font-weight:800; line-height:1.25; }
+    .aside-slogan em{ font-style:italic; text-decoration:underline; text-underline-offset:.15em; text-decoration-thickness:2px; }
+    .aside-slogan .win{
+      background:linear-gradient(180deg, var(--green), #86efac);
+      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 6px 20px rgba(34,197,94,.35);
+      font-style:italic;
+    }
+
+    /* Formulario */
+    .auth-form{ padding:clamp(20px,4vw,44px); }
+    .auth-form h1{ margin:0 0 10px; font-size:clamp(22px,2.6vw,28px); }
+    .subtitle{ margin:0 0 14px; color:#475569; font-weight:600; }
+    .form-grid{ display:grid; gap:14px; }
+    label{ font-size:.9rem; color:#334155; font-weight:600; }
+    input[type="email"]{
+      width:100%; padding:.85rem .9rem; border-radius:12px;
+      border:1px solid #e5e7eb; background:#f4f6f9; color:#0f172a; outline:none;
+    }
+    .btn{ display:inline-flex; justify-content:center; align-items:center; gap:.55rem; padding:.85rem 1.15rem; border-radius:999px; font-weight:700; cursor:pointer; border:1px solid transparent; }
+    .btn-primary{ background:#0f172a; color:#fff; }
+    .btn-primary:hover{ filter:brightness(1.1); }
+    .btn-google{ background:#fff; border:1px solid #d1d5db; color:#111827; box-shadow:0 6px 18px rgba(2,8,23,.08); }
+    .g-icon{ width:18px; height:18px; display:inline-block; }
+    .links{ color:#6b7280; }
+    .links a{ color:#0f172a; font-weight:700; text-decoration:underline; }
+
+    footer{ max-width:var(--maxw); margin:40px auto; padding:6px 0; color:rgba(255,255,255,.7); text-align:center; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav__bar">
+      <div class="brand">WALLETIX</div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a class="pill" href="index.html">Inicio</a></li>
+          <li><a class="pill" href="funciones.html">Funciones</a></li>
+          <li><a class="pill" href="login.html">Iniciar Sesión</a></li>
+          <li><a class="pill" href="registro.html">Regístrate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CARD Recuperar -->
+  <main class="auth">
+    <section class="auth-card" aria-labelledby="titulo-recuperar">
+      <!-- Aside con logo y lema -->
+      <aside class="auth-aside">
+        <div class="aside-stack">
+          <div class="logo-circle" aria-hidden="true">
+            <img src="./WALLETIX.png" alt="">
+          </div>
+          <p class="aside-slogan">“Empieza a <em>ahorrar</em>, empieza a <span class="win">ganar</span>”</p>
+        </div>
+      </aside>
+
+      <!-- Formulario -->
+      <div class="auth-form">
+        <h1 id="titulo-recuperar">Recuperar Contraseña</h1>
+        <p class="subtitle">Ingrese su correo electrónico</p>
+
+        <form class="form-grid" action="#" method="post" novalidate>
+          <div>
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" placeholder="Correo electrónico" required autocomplete="email" />
+          </div>
+
+          <div><button class="btn btn-primary" type="submit">Recuperar contraseña</button></div>
+
+          <div>
+            <button class="btn btn-google" type="button" aria-label="Iniciar sesión con Google">
+              <svg class="g-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.23 9.21 3.62l6.9-6.9C35.9 2.02 30.3 0 24 0 14.62 0 6.45 5.38 2.56 13.22l8.49 6.59C13.1 14.7 18.16 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.5 24c0-1.55-.14-3.05-.39-4.5H24v9h12.7c-.55 2.98-2.22 5.51-4.73 7.21l7.22 5.6C43.93 37.31 46.5 31.13 46.5 24z"/>
+                <path fill="#FBBC05" d="M11.05 27.81A14.5 14.5 0 019.5 24c0-1.33.18-2.62.52-3.85l-8.49-6.59A24 24 0 000 24c0 3.88.93 7.55 2.56 10.78l8.49-6.97z"/>
+                <path fill="#34A853" d="M24 48c6.3 0 11.62-2.08 15.5-5.64l-7.22-5.6c-2.01 1.35-4.6 2.14-8.28 2.14-5.84 0-10.9-5.2-12.95-10.31l-8.49 6.97C6.45 42.62 14.62 48 24 48z"/>
+              </svg>
+              Iniciar sesión con Google
+            </button>
+          </div>
+
+          <p class="links">¿Recordaste tu contraseña? <a href="login.html">Iniciar Sesión</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="y"></span> Walletix.</footer>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Te hemos enviado instrucciones de recuperación.');
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
