@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walletix · Ahorra y gana</title>
+  <meta name="description" content="Walletix: organiza tus finanzas, controla tus egresos y alcanza tus metas de ahorro." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    
+    :root{
+      --brand:#111827;
+      --primary:#0ea5e9;
+      --green:#22c55e;
+
+      --page:#0d2338;    
+      --ink:#e6eef7;      
+      --muted:#a9b4c6;    
+      --border:#1c2937;
+      --card:#ffffff;
+
+      --shadow:0 12px 32px rgba(2,8,23,.30);
+      --radius:18px;
+      --maxw:1180px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--page);
+      color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    :focus-visible{outline:3px solid var(--primary);outline-offset:2px;border-radius:10px}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:clamp(16px,2vw,28px)}
+
+   
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px)}
+    .nav{background:color-mix(in srgb, var(--page) 92%, transparent);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav__bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:900;letter-spacing:.04em;color:#fff}
+    nav ul{list-style:none;display:flex;gap:clamp(8px,1.5vw,14px);margin:0;padding:0;align-items:center}
+    .pill{padding:.55rem .9rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);border-radius:999px;font-weight:600;color:#dbe6f4;position:relative}
+    .pill.is-active::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-7px;width:42%;height:3px;border-radius:8px;background:#fff;opacity:.9}
+
+    
+    .hero{padding-block:clamp(36px,8vw,96px)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,3vw,36px);align-items:center}
+    @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
+    .hero h1{font-size:clamp(36px,6vw,72px);line-height:1.05;margin:0 0 .3rem;font-weight:900;letter-spacing:.3px}
+    .hero h1 em{font-style:italic;text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:5px}
+    .win{background:linear-gradient(180deg,var(--green),#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 22px rgba(34,197,94,.35);font-style:italic}
+    .cta-btn{margin-top:clamp(10px,1.6vw,16px);padding:.9rem 1.3rem;border-radius:999px;font-weight:800;background:#fff;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:.55rem}
+    .cta-btn:hover{transform:translateY(-1px)}
+    .lead{max-width:56ch;color:#dbe6f4;margin-top:clamp(10px,1.2vw,14px)}
+
+    .logo-wrap{display:grid;place-items:center}
+    .hero-logo{
+      width:min(420px,70%);
+      border-radius:22px;
+      box-shadow:0 20px 48px rgba(2,8,23,.35);
+      border:1px solid rgba(255,255,255,.08);
+      background:#0f1f2e;
+      padding:14px;
+    }
+    .under-name{margin-top:10px;text-align:center;letter-spacing:.18em;font-weight:900}
+
+    
+    .about{margin-top:clamp(28px,5vw,56px)}
+    .about-card{
+      background:var(--card);
+      color:#0f172a;
+      border-radius:24px;
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow:var(--shadow);
+      padding:clamp(18px,3vw,28px);
+      display:grid;grid-template-columns:1.4fr .8fr;gap:clamp(18px,3vw,32px);
+      align-items:center;
+    }
+    @media (max-width:980px){ .about-card{grid-template-columns:1fr} }
+    .about h2{margin:.2rem 0 1rem;font-size:clamp(24px,4.2vw,48px)}
+    .about p{margin:.45rem 0}
+
+    
+    footer{padding:32px 0;color:rgba(255,255,255,.7);border-top:1px solid rgba(255,255,255,.08);margin-top:clamp(36px,6vw,80px)}
+
+    
+    .contact-fab{position:fixed;right:18px;bottom:18px;z-index:80}
+    .contact-chip{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:.6rem .75rem;border-radius:999px;
+      background:color-mix(in srgb, var(--page) 40%, #ffffff 8%);
+      border:1px solid var(--border, rgba(255,255,255,.12));
+      box-shadow:0 10px 28px rgba(2,8,23,.35);
+      backdrop-filter:blur(6px) saturate(140%);
+      -webkit-backdrop-filter:blur(6px) saturate(140%);
+    }
+    .contact-chip b{font-weight:800;color:#fff;letter-spacing:.2px}
+    .contact-chip .ic{
+      width:40px;height:40px;display:grid;place-items:center;
+      border-radius:12px;background:#0b1f31;
+      border:1px solid var(--border, rgba(255,255,255,.12));
+      color:#fff;transition:transform .18s ease, filter .18s ease;
+    }
+    .contact-chip .ic:hover{transform:translateY(-1px);filter:brightness(1.08)}
+    .contact-chip svg{width:22px;height:22px}
+    @media (max-width:680px){
+      .contact-chip{padding:.5rem;gap:8px}
+      .contact-chip b{display:none}
+    }
+  </style>
+</head>
+<body>
+ 
+  <header class="nav">
+    <div class="container nav__bar">
+      <div class="brand">WALLETIX</div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a class="pill is-active" href="index.html">Inicio</a></li>
+          <li><a class="pill" href="funciones.html">Funciones</a></li>
+          <li><a class="pill" href="comienza.html">Comienza</a></li>
+          <li><a class="pill" href="login.html">Iniciar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>
+          EMPIEZA A <em>AHORRAR</em>,<br />
+          EMPIEZA A <span class="win">GANAR</span>
+        </h1>
+
+        <a class="cta-btn" href="registro.html">Regístrate</a>
+
+        <p class="lead">
+          En un mundo donde cada gasto cuenta, tener control de tus finanzas nunca fue tan importante.
+          Walletix está diseñado para ayudarte a organizar tus ingresos, controlar tus egresos y alcanzar
+          tus metas de ahorro, sin importar si eres estudiante dando tus primeros pasos o un profesional en
+          crecimiento.
+        </p>
+      </div>
+
+      <div class="logo-wrap">
+        <img class="hero-logo" src="WALLETIX.png" alt="Logo de Walletix" />
+        <div class="under-name">WALLETIX</div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="about">
+    <div class="container">
+      <div class="about-card">
+        <div>
+          <h2>¿Quiénes somos?</h2>
+          <p>Somos Walletix, un startup creado por estudiantes de Ingeniería de Sistemas y Software de la UPC.</p>
+          <p>Nacemos con el propósito de mejorar la educación financiera de jóvenes peruanos de 18 a 30 años,
+          ofreciéndoles una herramienta simple, accesible y adaptada a sus hábitos digitales.</p>
+          <p>Nuestra app ayuda a organizar ingresos y gastos, controlar los “gastos hormiga”, establecer metas
+          de ahorro y recibir recomendaciones personalizadas, fomentando decisiones financieras responsables y sostenibles.</p>
+        </div>
+        <div class="logo-wrap">
+          <img class="hero-logo" src="WALLETIX.png" alt="Walletix" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Walletix.</div>
+  </footer>
+
+
+<div class="contact-fab" aria-label="Contáctanos">
+  <div class="contact-chip" role="img" aria-label="Contáctanos: Instagram y correo (decorativo)">
+    <b>Contáctanos:</b>
+
+    
+    <span class="ic" aria-hidden="true" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+              fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" fill="none"
+                stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+      </svg>
+    </span>
+
+    
+    <span class="ic" aria-hidden="true" title="Correo">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"
+              fill="none" stroke="currentColor" stroke-width="2"/>
+        <polyline points="4,6 12,12 20,6"
+              fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </span>
+  </div>
+</div>
+
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

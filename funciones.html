@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walletix · Funciones</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    
+    :root{
+      --brand:#111827; --primary:#0ea5e9; --green:#22c55e;
+      --page:#0d2338; --ink:#e6eef7; --muted:#a9b4c6; --border:#1c2937; --card:#ffffff;
+      --shadow:0 12px 32px rgba(2,8,23,.30); --radius:18px; --maxw:1180px;
+    }
+
+    *,*::before,*::after{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; background:var(--page); color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; text-decoration:none }
+    img{ display:block; max-width:100% }
+    :focus-visible{ outline:3px solid var(--primary); outline-offset:2px; border-radius:10px }
+    .container{ max-width:var(--maxw); margin-inline:auto; padding:clamp(16px,2vw,28px) }
+
+    
+    header{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px) }
+    .nav{ background:color-mix(in srgb, var(--page) 92%, transparent); border-bottom:1px solid rgba(255,255,255,.06) }
+    .nav__bar{ display:flex; align-items:center; justify-content:space-between; gap:16px }
+    .brand{ display:flex; align-items:center; gap:.6rem; font-weight:900; letter-spacing:.04em; color:#fff }
+    nav ul{ list-style:none; display:flex; gap:clamp(8px,1.5vw,14px); margin:0; padding:0; align-items:center }
+    .pill{ padding:.55rem .9rem; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); border-radius:999px; font-weight:600; color:#dbe6f4; position:relative }
+    .pill.is-active::after{ content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-7px; width:42%; height:3px; border-radius:8px; background:#ffffff; opacity:.9 }
+
+    
+    .hero{ padding-block:clamp(36px,8vw,96px) }
+    .hero h1{ font-size:clamp(32px,5vw,56px); line-height:1.08; margin:0; font-weight:900 }
+
+   
+    .slider{
+      position:relative; margin-top:6px;
+    }
+    .viewport{
+      overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; padding-bottom:6px;
+    }
+    .track{
+      display:flex; gap:clamp(18px,2vw,24px);
+    }
+    .card{
+      background:var(--card); color:#0f172a; border-radius:var(--radius);
+      box-shadow:var(--shadow); border:1px solid rgba(15,23,42,.06);
+      padding:clamp(16px,2vw,22px);
+      scroll-snap-align:start;
+      min-width:min(520px, 92vw);           
+    }
+    @media (min-width:860px){
+      .card{ min-width:min(520px, 46vw); }   
+    }
+    .card h3{ margin:.2rem 0 .35rem; font-size:clamp(18px,1.6vw,22px) }
+
+    .arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:44px; height:44px; display:grid; place-items:center;
+      background:rgba(15,23,42,.88); color:#fff; border:1px solid rgba(255,255,255,.14);
+      border-radius:12px; box-shadow:0 10px 28px rgba(2,8,23,.35);
+      cursor:pointer; z-index:10;
+    }
+    .arrow.left{ left:-10px }  
+    .arrow.right{ right:-10px }
+    .arrow:disabled{ opacity:.45; cursor:not-allowed }
+
+    
+    .cta{ text-align:center; margin-top:clamp(36px,6vw,72px) }
+    .cta h2{ font-size:clamp(28px,4.8vw,48px); margin:0; font-weight:900 }
+    .cta em{ font-style:italic; text-decoration:underline; text-underline-offset:.2em; text-decoration-thickness:3px }
+    .cta .win{ background:linear-gradient(180deg,var(--green),#86efac); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 6px 22px rgba(34,197,94,.35); font-style:italic }
+
+    footer{ padding:32px 0; color:rgba(255,255,255,.7); border-top:1px solid rgba(255,255,255,.08); margin-top:clamp(36px,6vw,80px) }
+
+    
+    .contact-fab{ position:fixed; right:18px; bottom:18px; z-index:80 }
+    .contact-chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:.6rem .75rem; border-radius:999px;
+      background:color-mix(in srgb, var(--page) 40%, #ffffff 8%);
+      border:1px solid var(--border); box-shadow:0 10px 28px rgba(2,8,23,.35);
+      backdrop-filter:blur(6px) saturate(140%); -webkit-backdrop-filter:blur(6px) saturate(140%);
+    }
+    .contact-chip b{ font-weight:800; color:#fff; letter-spacing:.2px }
+    .contact-chip .ic{
+      width:40px; height:40px; display:grid; place-items:center;
+      border-radius:12px; background:#0b1f31;
+      border:1px solid var(--border); color:#fff;
+      transition:transform .18s ease, filter .18s ease; cursor:default;
+    }
+    .contact-chip .ic:hover{ transform:translateY(-1px); filter:brightness(1.08) }
+    .contact-chip svg{ width:22px; height:22px }
+    @media (max-width:680px){ .contact-chip{ padding:.5rem; gap:8px } .contact-chip b{ display:none } }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav__bar">
+      <div class="brand">WALLETIX</div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a class="pill" href="index.html">Inicio</a></li>
+          <li><a class="pill is-active" href="funciones.html">Funciones</a></li>
+          <li><a class="pill" href="comienza.html">Comienza</a></li>
+          <li><a class="pill" href="login.html">Iniciar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  
+  <section class="hero">
+    <div class="container">
+      <h1>Nuestras funciones principales</h1>
+    </div>
+  </section>
+
+  
+  <section class="features">
+    <div class="container">
+      <div class="slider">
+        <button class="arrow left" aria-label="Anterior" id="prevBtn">‹</button>
+
+        <div class="viewport" id="viewport">
+          <div class="track">
+            
+            <article class="card">
+              <h3>Educación financiera</h3>
+              <p>Aprende a manejar tu dinero con contenido breve, visual y entretenido: tips, microlecciones y consejos prácticos para fortalecer tu cultura financiera.</p>
+            </article>
+           
+            <article class="card">
+              <h3>Reportes y visualización</h3>
+              <p>Gráficos claros e insights sobre tus hábitos. Identifica categorías con mayor gasto y oportunidades de ahorro, sin complicaciones.</p>
+            </article>
+            
+            <article class="card">
+              <h3>Gamificación</h3>
+              <p>Convierte el ahorro en un reto divertido. Desbloquea logros, completa misiones y mantén la motivación para cumplir tus metas.</p>
+            </article>
+           
+            <article class="card">
+              <h3>Gastos hormiga bajo control</h3>
+              <p>Detecta consumos pequeños y recurrentes que afectan tu bolsillo. Recibe alertas y propuestas para reducirlos.</p>
+            </article>
+            
+            <article class="card">
+              <h3>Metas de ahorro</h3>
+              <p>Define objetivos (viaje, laptop, emergencia) y sigue tu progreso con barras y estimaciones de tiempo para alcanzarlos.</p>
+            </article>
+           
+            <article class="card">
+              <h3>Recordatorios inteligentes</h3>
+              <p>Avisos personalizados para pagos y fechas clave. Evita moras y organiza tus finanzas con anticipación.</p>
+            </article>
+          </div>
+        </div>
+
+        <button class="arrow right" aria-label="Siguiente" id="nextBtn">›</button>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section class="cta">
+    <div class="container">
+      <h2>EMPIEZA A <em>AHORRAR</em>, EMPIEZA A <span class="win">GANAR</span></h2>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Walletix.</div>
+  </footer>
+
+ 
+  <div class="contact-fab" aria-label="Contáctanos">
+    <div class="contact-chip" role="img" aria-label="Contáctanos: Instagram y correo (decorativo)">
+      <b>Contáctanos:</b>
+      <span class="ic" aria-hidden="true" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="ic" aria-hidden="true" title="Correo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <polyline points="4,6 12,12 20,6" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    
+    const vp = document.getElementById('viewport');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+
+    function updateArrows(){
+      
+      const maxScroll = vp.scrollWidth - vp.clientWidth - 2;
+      prev.disabled = vp.scrollLeft <= 2;
+      next.disabled = vp.scrollLeft >= maxScroll;
+    }
+    updateArrows();
+
+    prev.addEventListener('click', () => {
+      vp.scrollBy({ left: -vp.clientWidth * 0.9, behavior: 'smooth' });
+    });
+    next.addEventListener('click', () => {
+      vp.scrollBy({ left: vp.clientWidth * 0.9, behavior: 'smooth' });
+    });
+    vp.addEventListener('scroll', updateArrows);
+    window.addEventListener('resize', updateArrows);
+  </script>
+</body>
+</html>

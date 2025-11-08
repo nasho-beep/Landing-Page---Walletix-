@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walletix · Cambiar contraseña</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --page:#0d2338; --ink:#e6eef7; --card:#ffffff; --text-dark:#0f172a;
+      --muted:#64748b; --primary:#0ea5e9; --shadow:0 18px 36px rgba(2,8,23,.25);
+      --radius:20px; --maxw:1100px;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:var(--page);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:inherit;text-decoration:none}
+
+    header.nav{position:sticky;top:0;z-index:1000}
+    .nav{background:rgba(13,35,56,.92);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:saturate(180%) blur(8px)}
+    .nav__bar{max-width:var(--maxw);margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{color:#fff;font-weight:900;letter-spacing:.04em}
+    .nav ul{list-style:none;display:flex;gap:10px;margin:0;padding:0;align-items:center}
+    .pill{padding:.55rem .9rem;border-radius:999px;font-weight:600;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.15);color:#dbe6f4}
+    .pill:hover{background:rgba(255,255,255,.18)} .pill.is-active{background:#fff;color:#0d2338;border-color:#fff}
+
+    .wrap{max-width:var(--maxw);margin:clamp(16px,3vw,42px) auto;padding:clamp(12px,2vw,24px)}
+    .panel{display:grid;grid-template-columns:1.05fr 1fr;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
+    @media (max-width:980px){.panel{grid-template-columns:1fr}}
+    .left{background:linear-gradient(180deg,#0f2740,#0d2338 60%);padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;border-right:1px solid rgba(255,255,255,.08)}
+    .logo{width:clamp(220px,32vw,360px);aspect-ratio:1/1;background:#fff url('WALLETIX.png') center/70% no-repeat;border-radius:50%;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+    .quote{text-align:center;max-width:520px;line-height:1.35;font-size:clamp(20px,2.2vw,28px)}
+    .quote em{text-decoration:underline;text-underline-offset:.18em;font-style:italic}
+    .quote .win{background:linear-gradient(180deg,#22c55e,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 22px rgba(34,197,94,.35);font-style:italic}
+    .right{background:var(--card);color:var(--text-dark);padding:clamp(24px,4vw,48px)}
+    .title{margin:0 0 18px;font-size:clamp(26px,3.6vw,38px);font-weight:900;color:var(--text-dark)}
+
+    form{display:grid;gap:16px}
+    .field{display:grid;gap:8px}
+    label{color:#1f2937;font-weight:600}
+    input{width:100%;border-radius:14px;border:1px solid #cbd5e1;padding:14px 16px;font-size:16px;background:#f1f5f9;color:var(--text-dark);transition:border-color .2s,box-shadow .2s,background .2s}
+    input::placeholder{color:var(--muted)}
+    input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 25%,transparent);background:#fff}
+    .btn{appearance:none;border:0;border-radius:14px;padding:12px 18px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(14,165,233,.35)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(14,165,233,.45)}
+    .links{color:#334155}.links a{color:#0f172a;font-weight:800;text-decoration:underline}
+
+    .contact-mini{position:fixed;right:18px;bottom:18px;display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:10px 14px;box-shadow:0 18px 36px rgba(0,0,0,.35);backdrop-filter:blur(8px) saturate(140%);user-select:none;pointer-events:none}
+    .contact-mini b{margin-right:4px}
+    .contact-mini .chip{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+    .contact-mini .chip svg{width:22px;height:22px;stroke:#e8eef7;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.98}
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav__bar">
+    <div class="brand">WALLETIX</div>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a class="pill" href="index.html">Inicio</a></li>
+        <li><a class="pill" href="funciones.html">Funciones</a></li>
+        <li><a class="pill" href="comienza.html">Comienza</a></li>
+        <li><a class="pill" href="login.html">Iniciar Sesión</a></li>
+        <li><a class="pill" href="registro.html">Registrarse</a></li>
+        <li><a class="pill is-active" href="cambiar.html">Cambiar contraseña</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel" aria-labelledby="title">
+    <div class="left">
+      <div class="logo" role="img" aria-label="Logo Walletix"></div>
+      <p class="quote">“Empieza a <em>ahorrar</em>, empieza a <span class="win">ganar</span>”</p>
+    </div>
+
+    <div class="right">
+      <h1 id="title" class="title">Cambiar contraseña</h1>
+
+      <form id="chg">
+        <div class="field">
+          <label for="old">Contraseña actual</label>
+          <input id="old" type="password" placeholder="Contraseña actual" required>
+        </div>
+        <div class="field">
+          <label for="new1">Nueva contraseña</label>
+          <input id="new1" type="password" placeholder="Nueva contraseña" required>
+        </div>
+        <div class="field">
+          <label for="new2">Confirmar nueva contraseña</label>
+          <input id="new2" type="password" placeholder="Confirmar nueva contraseña" required>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+          <a class="btn" style="background:#e2e8f0;color:#0f172a" href="login.html">Regresar</a>
+        </div>
+
+        <p class="links">¿Recordaste tu contraseña? <a href="login.html">Iniciar sesión</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="contact-mini" aria-hidden="true" title="Solo visual">
+  <b>Contáctanos:</b>
+  <span class="chip">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17.2" cy="6.8" r="1.3" fill="#e8eef7" stroke="none"></circle></svg>
+  </span>
+  <span class="chip">
+    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M4 7l8 6 8-6"></path></svg>
+  </span>
+</div>
+
+<script>
+  document.getElementById('chg').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const a = (id)=>document.getElementById(id).value.trim();
+    if(a('new1') !== a('new2')){ alert('Las contraseñas nuevas no coinciden.'); return; }
+    alert('¡Cambio de contraseña enviado (demo)!');
+  });
+</script>
+</body>
+</html>
